@@ -1,0 +1,15 @@
+.main-body {
+    background: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    width: 80%;
+    min-height: 75vh;
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    z-index: 4;
+    display: flex;
+
+    justify-content: space-around;
+    align-items: center;
+    /* padding-top: 6rem; */
+}
