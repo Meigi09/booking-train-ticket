@@ -15,6 +15,7 @@ interface Train {
 export default function TrainManagement() {
     const [trains, setTrains] = useState<Train[]>([]);
     const [formData, setFormData] = useState({
+        train_id:'',
         train_number: '',
         train_name: '',
         source_station: '',
@@ -54,6 +55,7 @@ export default function TrainManagement() {
                     setTrains(prev => [...prev, response.data]);
                     // Reset form after successful submission
                     setFormData({
+                        train_id:'',
                         train_number: '',
                         train_name: '',
                         source_station: '',
@@ -62,7 +64,7 @@ export default function TrainManagement() {
                     });
                     setError(null);
                 })
-                .catch(error => setError('Failed to add train'));
+                .catch(_error => setError('Failed to add train'));
         }
     };
 
@@ -84,57 +86,71 @@ export default function TrainManagement() {
             <div className='flex flex-col items-center p-6'>
             <h2 className='font-bold'>Train Management</h2>
             {error && <div style={{ color: 'red' }}>{error}</div>}
-            <form onSubmit={(e) => { e.preventDefault(); handleAddTrain(); }} className='flex flex-col items-center gap-6'>
-                <input
-                    name="train_number"
-                    placeholder="Train Number"
-                    value={formData.train_number}
-                    onChange={handleInputChange}
-                    type="number"
-                    required
-                    className='p-3 rounded-xl'
-                />
-                <input
-                    name="train_name"
-                    placeholder="Train Name"
-                    value={formData.train_name}
-                    onChange={handleInputChange}
-                    required
-                    className='p-3 rounded-xl'
-                />
-                <input
-                    name="source_station"
-                    placeholder="Source Station"
-                    value={formData.source_station}
-                    onChange={handleInputChange}
-                    required
-                    className='p-3 rounded-xl'
-                />
-                <input
-                    name="destination_station"
-                    placeholder="Destination Station"
-                    value={formData.destination_station}
-                    onChange={handleInputChange}
-                    required
-                    className='p-3 rounded-xl'
-                />
-                <input
-                    name="class_types"
-                    placeholder="Class Types"
-                    value={formData.class_types}
-                    onChange={handleInputChange}
-                    className='p-3 rounded-xl'
-                />
-                <button type="submit" className='p-3 rounded-xl bg-green-800 hover:bg-white font-bold text-lg'>Add Train</button>
-            </form>
+                <form onSubmit={(e) => {
+                    e.preventDefault();
+                    handleAddTrain();
+                }} className='flex flex-col items-center gap-6'>
+                    <input
+                        name="train_id"
+                        placeholder="Train Id"
+                        value={formData.train_id}
+                        onChange={handleInputChange}
+                        type="number"
+                        required
+                        className='p-3 rounded-xl'
+                    />
+                    <input
+                        name="train_number"
+                        placeholder="Train Number"
+                        value={formData.train_number}
+                        onChange={handleInputChange}
+                        type="number"
+                        required
+                        className='p-3 rounded-xl'
+                    />
+                    <input
+                        name="train_name"
+                        placeholder="Train Name"
+                        value={formData.train_name}
+                        onChange={handleInputChange}
+                        required
+                        className='p-3 rounded-xl'
+                    />
+                    <input
+                        name="source_station"
+                        placeholder="Source Station"
+                        value={formData.source_station}
+                        onChange={handleInputChange}
+                        required
+                        className='p-3 rounded-xl'
+                    />
+                    <input
+                        name="destination_station"
+                        placeholder="Destination Station"
+                        value={formData.destination_station}
+                        onChange={handleInputChange}
+                        required
+                        className='p-3 rounded-xl'
+                    />
+                    <input
+                        name="class_types"
+                        placeholder="Class Types"
+                        value={formData.class_types}
+                        onChange={handleInputChange}
+                        className='p-3 rounded-xl'
+                    />
+                    <button type="submit" className='p-3 rounded-xl bg-green-800 hover:bg-white font-bold text-lg'>Add
+                        Train
+                    </button>
+                </form>
             </div>
             <div>
                 <ul>
                     <h2 className="font-bold">Trains</h2>
                     {trains.length === 0 && <div>No trains found</div>}
-                    <hr className="w-full border-b-2 border-gray-400" />
-                {trains.map(train => (
-                    <div key={train.train_id} className="train-card">
+                    <hr className="w-full border-b-2 border-gray-400"/>
+                    {trains.map(train => (
+                        <div key={train.train_id} className="train-card">
                         <div className="train-info">
                             <h3>{train.train_name}</h3>
                             <p>Train Number: {train.train_number}</p>

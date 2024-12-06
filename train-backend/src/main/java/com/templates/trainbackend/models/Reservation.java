@@ -47,6 +47,6 @@ public class Reservation {
     @Column(unique = true)
     private String email;
 
-    private Long phone_number;
+    private Integer phone_number;
 
 }

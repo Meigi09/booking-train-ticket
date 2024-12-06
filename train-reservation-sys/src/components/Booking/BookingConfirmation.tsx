@@ -4,6 +4,8 @@ import { useLocation } from 'react-router-dom';
 export default function BookingConfirmation() {
     const { state } = useLocation();
     const reservation = state?.reservation;
+    const train = state?.train;
+    const trainName = train?.train_name;
 
     if (!reservation) {
         return <div>No reservation details found!</div>;
@@ -13,9 +15,9 @@ export default function BookingConfirmation() {
     // const qrCodeData = `Reservation ID: ${reservation.reservation_id}\nTrain: ${reservation.train.train_name}\nFrom: ${reservation.from_place}\nTo: ${reservation.destination}`;
 
     return (
-        <div className="confirmation-content">
-            <h2>Booking Confirmation</h2>
-            <p><strong>Train:</strong> {reservation.train.train_name}</p>
+        <div className="confirmation-content flex flex-col items-center justify-between">
+            <h2 className="font-bold text-2xl">Booking Confirmation</h2>
+            <p><strong>Train:</strong> {trainName}</p>
             <p><strong>From:</strong> {reservation.from_place}</p>
             <p><strong>To:</strong> {reservation.destination}</p>
             <p><strong>Journey Date:</strong> {new Date(reservation.journey_date).toLocaleDateString()}</p>

@@ -13,7 +13,7 @@ export default function MainContent() {
                         <h1 className="pl-6 text-3xl font-bold">Book a train ticket <br/> here</h1>
                     </div>
                     <h2 className="text-2xl font-light">Make your trip memorable</h2>
-                <p className="text-base font-thin">Search for any train line you want for any place you are going</p>
+                <p className="text-base font-thin">Search for any train line you want for any place you are going and let's get you there</p>
                 <div className="flex gap-4">
                     <a 
                         className="px-6 py-3 bg-green-800 text-white font-semibold rounded-2xl cursor-pointer hover:bg-white hover:text-black transition-all"
@@ -21,12 +21,12 @@ export default function MainContent() {
                     >
                         Buy a Ticket <i className='bx bx-train bx-tada ml-2'></i>
                     </a>
-                    {/*<a */}
-                    {/*    className="px-6 py-3 bg-green-800 text-white font-semibold rounded-2xl cursor-pointer hover:bg-white hover:text-black transition-all"*/}
-                    {/*    onClick={() => navigate('/admin')}*/}
-                    {/*>*/}
-                    {/*    I'm Admin*/}
-                    {/*</a>*/}
+                    <a
+                        className="px-6 py-3 bg-green-800 text-white font-semibold rounded-2xl cursor-pointer hover:bg-white hover:text-black transition-all"
+                        onClick={() => navigate('/admin')}
+                    >
+                        I'm Admin
+                    </a>
                     </div>
                 </div>
                 <div className="flex flex-row justify-evenly gap-4 items-end">

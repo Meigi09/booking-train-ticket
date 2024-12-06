@@ -6,8 +6,9 @@ import './AdminContent.css'
 export default function AdminContent() {
     return (
         <div className="admin-dashboard">
-            <nav className="admin-nav">
-                <NavLink
+            <h2>Welcome Admin!!</h2>
+
+               <button className="admin-btn"> <NavLink
                     to="/admin/trains"
                     className={({ isActive }) =>
                         isActive ? 'nav-link active' : 'nav-link'
@@ -15,6 +16,8 @@ export default function AdminContent() {
                 >
                     Trains
                 </NavLink>
+               </button>
+            <button className="admin-btn">
                 <NavLink
                     to="/admin/users"
                     className={({ isActive }) =>
@@ -23,7 +26,8 @@ export default function AdminContent() {
                 >
                     Users
                 </NavLink>
-            </nav>
+
+            </button>
 
             <div className="admin-content">
                 <Routes>

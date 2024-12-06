@@ -17,36 +17,40 @@ export default function TrainPages() {
     const [trains, setTrains] = useState<Train[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchTrains = async () => {
-            try {
-                const response = await axios.get<Train[]>('http://localhost:8080/api/trains');
-                setTrains(response.data);
-                setLoading(false);
-            } catch (err) {
-                setError('Failed to fetch trains. Please try again.');
-                setLoading(false);
-            }
-        };
-
         fetchTrains();
     }, []);
 
-    const handleBookTrain = (train: Train) => {
-        navigate('/booking', { state: { train } });
+    const fetchTrains = () => {
+        axios.get('http://localhost:8080/api/trains')
+            .then(response => setTrains(response.data))
+            .catch(error => setError('Failed to fetch trains'));
     };
 
-    if (loading) return <p>Loading trains...</p>;
-    if (error) return <p>{error}</p>;
+    const handleBookTrain = (train: Train) => {
+        navigate('/booking', { state: { train, searchQuery } });
+    };
+    const filteredTrains = trains.filter((train) =>
+        train.train_name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
 
     return (
-        <div className="train-content flex flex-col justify-center items-center gap-6">
+        <div className="train-content flex flex-col justify-center items-center gap-6 scroll-smooth">
+            <input
+                type="text"
+                placeholder="Search by train name"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+
+            />
             <h2 className="font-bold text-2xl">Where is your Destination?</h2>
             <div className="train-list grid grid-cols-2 gap-6">
-                {trains.map((train) => (
+                {filteredTrains.map((train) => (
                     <div key={train.train_id} className="train-card shadow p-3 flex gap-6">
                         <div className="train-info items-start">
                             <h3 className="font-bold">{train.train_name}</h3>
@@ -56,7 +60,7 @@ export default function TrainPages() {
                             <p>Class Types: {train.class_types}</p>
                         </div>
                         <button
-                            className="bg-green-800 rounded-md items-end font-bold"
+                            className="bg-green-800 rounded-md items-end font-bold hover:bg-green-700"
                             onClick={() => handleBookTrain(train)}
                         >
                             Book Now

@@ -9,6 +9,7 @@ import TrainManagement from '../../admin/TrainManagement.tsx';
 import UserManagement from '../../admin/UserMnagement.tsx';
 import BookingConfirmation from "../Booking/BookingConfirmation.tsx";
 
+
 interface MainBodyProps {
     setBackgroundColor: (color: string) => void;
 }
@@ -28,7 +29,8 @@ export default function MainBody({ setBackgroundColor }: MainBodyProps) {
     }, [location.pathname, setBackgroundColor]);
 
     return (
-        <div className="main-body">
+
+        <div className="main-body scroll-smooth focus:scroll-auto">
             <Routes>
                 <Route path="/" element={<MainContent />} />
                 <Route path="/admin" element={<AdminContent/>} />
@@ -39,5 +41,6 @@ export default function MainBody({ setBackgroundColor }: MainBodyProps) {
                 <Route path="/booking-confirmation" element={<BookingConfirmation/>}/>
             </Routes>
         </div>
+
     )
 }

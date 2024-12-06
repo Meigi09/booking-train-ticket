@@ -9,6 +9,16 @@
       "projectName": "train-reservation-back",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
+    },
+    {
+      "type": "java",
+      "name": "Spring Boot-TrainBackendApplication<train-backend>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.templates.trainbackend.TrainBackendApplication",
+      "projectName": "train-backend",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
